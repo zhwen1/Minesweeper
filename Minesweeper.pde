@@ -15,9 +15,12 @@ void setup ()
     Interactive.make( this );
     
     //your code to initialize buttons goes here
-    
-    
-    
+    int[][] buttons = new MSButton[20][20];
+    for(int y=0;y<NUMS_ROWS;y++){
+      for(int x=0;x<button;y++){
+        buttons[y][x]= new MSButton[y][x];
+      }
+    }
     setBombs();
 }
 public void setBombs()
