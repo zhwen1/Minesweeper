@@ -1,5 +1,5 @@
 public final static int NUM_ROWS = 20;  
-public final static int NUM_COL = 20;
+public final static int NUM_COLS = 20;
 
 import de.bezier.guido.*;
 //Declare and initialize NUM_ROWS and NUM_COLS = 20
@@ -15,17 +15,21 @@ void setup ()
     Interactive.make( this );
     
     //your code to initialize buttons goes here
-    int[][] buttons = new MSButton[20][20];
-    for(int y=0;y<NUMS_ROWS;y++){
-      for(int x=0;x<button;y++){
-        buttons[y][x]= new MSButton[y][x];
+    buttons = new MSButton[20][20];
+    for(int r=0;r<NUM_ROWS;r++){
+      for(int c=0;c<NUM_COLS;c++){
+        buttons[r][c]= new MSButton(r,c);
       }
     }
+    bombs = new ArrayList<MSButton>();
     setBombs();
 }
 public void setBombs()
 {
-    //your code
+  int r=(int)Math.random()*20;
+  int c=(int)Math.random()*20;
+  if(bombs.contains(r)==false && bombs.contains(c)==false){
+  }
 }
 
 public void draw ()
@@ -57,8 +61,8 @@ public class MSButton
     
     public MSButton ( int rr, int cc )
     {
-        // width = 400/NUM_COLS;
-        // height = 400/NUM_ROWS;
+         width = 400/NUM_COLS;
+         height = 400/NUM_ROWS;
         r = rr;
         c = cc; 
         x = c*width;
