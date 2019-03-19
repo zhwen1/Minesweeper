@@ -118,7 +118,30 @@ public class MSButton
     public int countBombs(int row, int col)
     {
         int numBombs = 0;
-        //your code here
+        if(isValid(row-1,col)&&buttons[row-1][col]==true){
+           numBombs++;
+   }
+   if(isValid(row+1,col)&&grid[row+1][col]==true){
+     numBombs++;
+   }
+   if(isValid(row,col+1)&&grid[row][col+1]==true){
+     numBombs++;
+   }
+   if(isValid(row,col-1)&&grid[row][col-1]==true){
+     numBombs++;
+   }
+   if(isValid(row-1,col+1)&&grid[row-1][col+1]==true){
+     numBombs++;
+   }
+   if(isValid(row+1,col-1)&&grid[row+1][col-1]==true){
+     numBombs++;
+   }
+   if(isValid(row-1,col-1)&&grid[row-1][col-1]==true){
+     numBombs++;
+   }
+   if(isValid(row+1,col+1)&&grid[row+1][col+1]==true){
+     numBombs++;
+   }   
         return numBombs;
     }
 }
