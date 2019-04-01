@@ -4,7 +4,7 @@ private MSButton[][] buttons; //2d array of minesweeper buttons
 private ArrayList <MSButton> bombs= new ArrayList<MSButton>(); //ArrayList of just the minesweeper buttons that are mined
 public final static int NUM_ROWS = 20;  
 public final static int NUM_COLS = 20;
-public final static int NUM_BOMBS=2;
+public final static int NUM_BOMBS=40;
 void setup ()
 {
   size(400, 400);
@@ -37,9 +37,16 @@ public void setBombs()
 public void draw ()
 {
   background( 0 );
-  if (isWon())
+  if (isWon()==true){
     displayWinningMessage();
+  }
+  if(isLost){
+    for(int i = 0; i<bombs.size();i++){
+      bombs.get(i).mousePressed();
+    }
+  }
 }
+public boolean isLost = false;
 public boolean isWon()
 {
   int click = 0;
@@ -47,7 +54,7 @@ public boolean isWon()
   int bombcount = 0;
   for(int y = 0; y<NUM_ROWS;y++){
     for(int x =0; x<NUM_COLS;x++){
-      if(bombs.contains(buttons[x][y])||buttons[x][y].isMarked()){
+      if(bombs.contains(buttons[x][y])&&buttons[x][y].isMarked()){
         bombcount++;
       }
     }
@@ -59,10 +66,25 @@ public boolean isWon()
 }
 public void displayLosingMessage()
 {
-  //your code here
+    buttons[10][5].setLabel("Y");
+    buttons[10][6].setLabel("O");
+    buttons[10][7].setLabel("U");
+    buttons[10][9].setLabel("");
+    buttons[10][10].setLabel("L");
+    buttons[10][11].setLabel("O");
+    buttons[10][12].setLabel("S");
+    buttons[10][13].setLabel("E");
 }
 public void displayWinningMessage()
 {
+    buttons[10][5].setLabel("Y");
+    buttons[10][6].setLabel("O");
+    buttons[10][7].setLabel("U");
+    buttons[10][9].setLabel("");
+    buttons[10][10].setLabel("W");
+    buttons[10][11].setLabel("I");
+    buttons[10][12].setLabel("N");
+    
 }
 
 public class MSButton
@@ -107,7 +129,8 @@ public class MSButton
         clicked = false;
       }
     }
-    else if(bombs.contains(this)){
+    else if(bombs.contains(this)&&marked!=true){
+      isLost=true;
       displayLosingMessage();
     }
     else if(countBombs(r,c)>0){
